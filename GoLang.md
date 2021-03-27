@@ -7,9 +7,9 @@
 ### Commandes
 
 ```bash
-go run main.go // Execute de fichier main
-go build // Fabrique un binaire
-go install // Build et place dans le dossier /bin. Le programme peut ensuite etre lancé depuis le terminal.
+go run main.go // Exécute le fichier main.go
+go build // Build et crée un exécutable
+go install // Build et place dans le dossier /bin. Le dossier bin étant dans le path, on peut utiliser le programme depuis partout.
 ```
 
 ### Hello World
@@ -31,7 +31,7 @@ Tout le code doit se situer dans le **$GOPATH/src**. Généralement, un package 
 package nomdupackage
 ```
 
-Pour importer un package, on doit utiliser le **chemin complet**. Un import par ligne.
+Pour importer nos propres packages, on doit utiliser le **chemin complet**. Un import par ligne.
 
 ```go
 import (
@@ -75,13 +75,13 @@ Syntaxe raccourcie :
 var age = 20
 var name = "Bob"
 
-age := 20 // Impossible hors d'une fonction
+age := 20 // Impossible à l'extérieur d'une fonction
 name := "Bob" // Pareil
 ```
 
 ### Visibilité des variables
 
-La visibilité d'une variable se fait en fonction de la **case**. Pareil pour les **fonctions**, **struct**...
+La visibilité d'une variable se fait en fonction de la **case**. Pareil pour les **fonctions**, **structs**...
 
 ```go
 var name = "Bob" // Visible uniquement par le package
@@ -115,8 +115,6 @@ if age > 10 {
 } else {
     // code
 }
-
-
 ```
 
 ### Printf
@@ -151,7 +149,7 @@ switch {
 
 ### Les fonctions
 
-Logique de visibilité avec la première lettre.
+Logique de visibilité avec la première lettre(maj ou non).
 
 ```go
 func <nomdelafnct> (<param1> type, <param2> type) <TypeRetour> {
@@ -166,7 +164,7 @@ On peut **déclarer** la variable de retour dans la signature de la fonction. Ex
 ```go
 func sumNamedReturn(x, y, z int) (sum int) {
 	sum = x + y + z
-    return sum // le sum est facultatif (juste mettre return) mais déconseillé
+    return sum // le sum est facultatif (on peut juste mettre return) mais déconseillé
 }
 ```
 
@@ -182,19 +180,19 @@ _, name := MultReturn() // ignore la premiere variable
 
 ### Les tableaux
 
-La taille d'une tableau est **définitive**. Le contenu est toujours initialisé a la valeur par **default** (0 pour les integers, "" pour les strings...)
+La taille d'un tableau est **définitive**. Le contenu est toujours initialisé à la valeur par **défaut** (0 pour les integers, "" pour les strings...)
 
 ```go
 var t[5] int; //Déclaration
-odds := [6]int{1,3,5,7} // Déclation avec valeurs pas défault
+odds := [6]int{1,3,5,7} // Déclation avec valeurs
 t[3] = 12; //Affectation
-fmt.Println("names=%v", t) // Affiche le tableau en entier, peu importe le type 
-len(t)
+fmt.Println("names=%v", t) // Affiche le tableau en entier, peu importe son type 
+len(t) // Longeur d'un tableau
 ```
 
 ### Les slices
 
-Ce sont des tableaux de tailles **dynamique**. 
+Ce sont des tableaux de taille **dynamique**. 
 
 ```go
 s := make([]int, 3) // Crée un tableau avec len(3) (et cap de 3)
@@ -209,7 +207,7 @@ copy(subCopy, sub1) // Copie donc plus de pointeurs
 
 ```
 
-Lorsque on ajout un élément à un slice :
+Lorsque on ajoute un élément à un slice :
 
 - Si on dépasse la taille du tableau
 - Un nouveau tableau est alloué, de capacité doublée
@@ -247,7 +245,7 @@ for i, num := range nums {
 }
 
 for _, c := range "golang" {
-    fmt.Printf("%v", string(c)) // Obligé de cast en string sinon on a la valeur du byte
+    fmt.Printf("%v", string(c)) // Obliger de cast en string sinon on a la valeur du byte
 }
 ```
 
@@ -290,7 +288,7 @@ func main() {
 
 ### Defer
 
-defer permet d'exécuter du code à la sortie d'une fonction. Cela peut -être très pratique pour fermer un fichier a la sortie d'une fonction par exemple. **Attention** defer fonctionne en mode **LIFO**(Last In First Out).
+`defer` permet d'exécuter du code à la sortie d'une fonction. Cela peut -être très pratique pour fermer un fichier a la sortie d'une fonction par exemple. **Attention** `defer` fonctionne en mode **LIFO**(Last In First Out).
 
 ````go
 func myNameIs() {
