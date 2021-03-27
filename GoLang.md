@@ -309,11 +309,57 @@ func main() {
 
 ### Définition
 
+```go
+type Address struct {
+    street, city string
+}
+type User struct {
+    Name string
+    Email string
+    Age int
+    Addr Address
+}
+func main() {
+    var p Person
+    p.Name = "Bob"
+    p.Addr.city = "Lyon"
+}
+```
 
+Quelques points sur les structs 
+
+- Un `struct` ne peut contenir que des variables (pas de méthodes).
+- La règle de visibilité de package s'applique pour :
+  - le `struct` lui même.
+  - les variables à l'intérieur.
 
 ### Déclaration
 
+ ```go
+// Un à un
+var p1 player.Player;
+p1.Name = "Bob"
+p1.Age = 10
 
+// Clé valeur
+p2 := player.Player {
+    Name: "Bob",
+    Age: 10,
+    Avatar: player.Avatar{
+        Url : "http://url.jpg"
+    }
+}
+
+// Par une méthode (conseillé)
+// Dans le package player
+func New(name string) Player {
+    return Player {
+        Name : name
+    }
+}
+// Dans le main
+p3 := player.New("Bob")
+ ```
 
 ### Embedded Struct
 
