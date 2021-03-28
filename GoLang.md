@@ -363,7 +363,45 @@ p3 := player.New("Bob")
 
 ### Embedded Struct
 
+L'héritage en go n'existe pas. En effet, Go a choisi une approche totalement différente. On préfère la composition avec l'Embedded Struct. Exemple : 
 
+```go
+type Address struct {
+    City string
+}
+type User struct {
+    Name string
+    Address // pas de nom de variable!
+}
+```
+
+Ici, un User est une adresse. On peut donc directement écrire :
+
+```go
+var u = User
+u.City = "Londres" // City est directement accessible
+```
+
+Exemple plus concret [ici](02-exemple-struct/main.go).
+
+### Struct et Receiver function
+
+Permet d'écrire des méthodes pour des structs.
+
+```go
+func (u User) SayHello() {
+    fmt.Printf("Hello %v!\n", u.Name)
+}
+```
+
+Utilisation : 
+
+```go
+u := User{"Bob"}
+u.SayHello() 
+```
+
+**Attention**, la méthode SayHello() reçoit une copie de u. On parle de méthode avec un **value receiver**, SayHello() ne peut donc pas **modifier** le struct original. En créant une méthode nommée `String() string` on redéfinie la manière d'afficher notre struct (équivalent à toString en Java).
 
 ### Pointeurs
 
