@@ -405,7 +405,33 @@ u.SayHello()
 
 ### Pointeurs
 
+```go
+x := -42
+s := "Bob"
+c := &x // Création d'un pointer vers la variable x
+i := *p // Recupère la valeur de ce sur quoi pointe p (-42) 
+```
 
+Exemple plus complet [ici](03-exemple-pointeurs/main.go])
 
 ### Pointer Receiver
+
+Permet de modifier les structs grâce aux receivers.
+
+```go
+type User struct {
+    Name string
+}
+func (u *User) SayHello() {
+    fmt.Printf("Hello %v", u.Name)
+}
+
+func (u *User) UpdateName(name string) {
+    u.Name := name
+}
+```
+
+Exemple plus complet [ici](04-exemple-pointer-receiver/main.go)
+
+## Maps
 
