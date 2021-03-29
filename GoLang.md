@@ -412,7 +412,7 @@ c := &x // Création d'un pointer vers la variable x
 i := *p // Recupère la valeur de ce sur quoi pointe p (-42) 
 ```
 
-Exemple plus complet [ici](03-exemple-pointeurs/main.go])
+Exemple plus complet [ici](03-exemple-pointeurs/main.go)
 
 ### Pointer Receiver
 
