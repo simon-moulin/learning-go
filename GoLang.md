@@ -435,3 +435,102 @@ Exemple plus complet [ici](04-exemple-pointer-receiver/main.go)
 
 ## Maps
 
+### Définition
+
+Tableau clé-> valeur
+
+```go
+var m map[string]int // clé de type string et valeurs de type int
+m = make(map[string]int)
+```
+
+Tout ce qui est comparable peut être en clé càd tout sauf slice et maps.
+
+```go
+var m map[int]bool = make(map[int]bool)
+var m2 = make(map[int]bool)
+
+m3 := make(map[int]bool)
+
+type Vector struct {
+    X, Y int
+}
+
+vecs := make(map[Vector]string)
+fmt.Prinln(vecs)
+```
+
+### Modifier une map
+
+```go
+m := make([string]int)
+m["hello"] = 5 // On affecte
+m["goodbye"] = 5 // On affecte
+
+i := m["hello"] // On recupere la valeur de hello
+
+j, ok := m["helo"] // La clé n'existe pas donc ok=false
+
+if _,ok := m["hello"]; ok {
+    fmt.Println("hello key exist!")
+}
+
+delete(m, "beatles") // supprime une cle
+```
+
+### Parcourir une map
+
+```go
+m := map[string]int {
+    "Bob": 10,
+    "Alice", 15,
+    "Bobette": 20,
+    "John": 7,
+}
+
+for cle, valeur := range m= {
+    fmt.Printf('cle=%v valeur=%v', cle, valeur)
+}
+
+
+```
+
+### Struct et map
+
+Le top c'est de faire des pointeurs sur des structs.
+
+```go
+type User struct {
+    name string
+}
+
+m := map[string]*User {
+    "HR": {"Bob"},
+    "CEO": {"Alice"},
+}
+hr := m["HR"]
+hr.name = "John" // modifie vraiment car hr est un pointeur
+
+m["CFO"] = &User{"Bobette"}
+```
+
+Struct en clé : 
+
+```go
+type Key strct {
+    ID int,
+   	Name string
+}
+
+res := make(map[Key]string)
+res[Key{1, "aze"}] = "file1"
+k:= Key{2, "ert"}
+res[k] = "file2"
+
+delete(res, Key{1, "aze"})
+delete(res, k)
+
+```
+
+
+
